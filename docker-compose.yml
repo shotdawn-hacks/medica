@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  grafana:
+    image: grafana/grafana-enterprise:8.2.0
+    ports:
+      - 3000:3000
+    user: '104'
+  # frontend:
+  #   container_name: react_medview
+  #   image: react_medview:1.0.0
+  #   build:
+  #     context: frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #   - '8000:8000'
+  plants:
+    container_name: api-gateway
+    image: api-gateway:1.0.0
+    environment:
+       - MONGO=mongodb://
+    build:
+        dockerfile: microservices/api-gateway/Dockerfile
+        context: .
+    ports:
+    - '9000:9000'
+    
