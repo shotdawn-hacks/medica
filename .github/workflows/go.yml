@@ -17,12 +17,17 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
         go-version: 1.20
-        
-    - name: Install dependencies
-      run: go mod tidy
+    - name: Go Tidy
+      run: go mod tidy && git diff --exit-code
+
+    - name: Go Mod
+      run: go mod download
+
+    - name: Go Mod Verify
+      run: go mod verify
       
     - name: Build
       run: go build .
