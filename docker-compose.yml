@@ -5,15 +5,15 @@ services:
     ports:
       - 3000:3000
     user: '104'
-  # frontend:
-  #   container_name: react_medview
-  #   image: react_medview:1.0.0
-  #   build:
-  #     context: frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #   - '8000:8000'
-  plants:
+  frontend:
+    container_name: react_medview
+    image: react_medview:1.0.0
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+    - '8080:8080'
+  api-gateway:
     container_name: api-gateway
     image: api-gateway:1.0.0
     environment:
