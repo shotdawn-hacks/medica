@@ -12,15 +12,15 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o medview main.go
+RUN go build -o medica main.go
 
 FROM alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/medview /app/medview
+COPY --from=builder /app/medica /app/medica
 
-CMD ["./medview", "api-gateway"]
+CMD ["./medica", "api-gateway"]
 
 EXPOSE 9000
 

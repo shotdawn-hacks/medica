@@ -1,10 +1,10 @@
 package processor
 
 import (
-	"medview/microservices/api-gateway/api/private"
-	"medview/microservices/api-gateway/api/public"
-	"medview/sdk/destination"
-	"medview/sdk/shared"
+	"medica/microservices/api-gateway/api/private"
+	"medica/microservices/api-gateway/api/public"
+	"medica/sdk/destination"
+	"medica/sdk/shared"
 
 	"github.com/gin-gonic/gin"
 )
