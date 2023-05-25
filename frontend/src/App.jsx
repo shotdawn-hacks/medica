@@ -9,6 +9,7 @@ import {
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/404';
+import Login from './pages/Login';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -20,7 +21,7 @@ const App = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/login" element={<div/>} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
