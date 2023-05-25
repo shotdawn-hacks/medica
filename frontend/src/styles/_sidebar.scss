@@ -1,0 +1,52 @@
+.sidebar {
+  grid-area: sidebar;
+  // background-color: #fafafa;
+  background-color: var(--main-background-color);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 50px 30px 0px 30px;
+  // transition: 1.5s;
+  white-space: nowrap;
+  overflow: scroll;
+
+  & p {
+    line-height: 20px;
+  }
+}
+
+
+.navigation {
+  display: grid;
+  grid-auto-rows: 80px;
+  gap: 15px;
+
+  &-section {
+    font-size: 1.5em;
+    height: 100%;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 50px 60px;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    overflow: hidden;
+    border-radius: 360px;
+    padding-inline: 35px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+    &.active, &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+  }
+
+  &-section-collapsed {
+    display: grid;
+    grid-template-rows: 25px 10px;
+  }
+
+  & .ribbon {
+    visibility: hidden;
+  }
+}

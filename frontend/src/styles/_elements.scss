@@ -1,0 +1,38 @@
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+.icon-auto {
+  width: auto;
+  height: 46px;
+}
+
+.centering {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  height: max-content;
+  width: max-content;
+}
+
+.medica {
+  content: '';
+
+  &:before {
+    color: var(--signature-color);
+    content: 'medica';
+  }
+}
+
+.logo {
+  font-size: 3em;
+  justify-self: center;
+  align-self: center;
+}
+
+.icon-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
