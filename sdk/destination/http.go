@@ -1,7 +1,7 @@
 package destination
 
 import (
-	"medview/sdk/client"
+	"medica/sdk/client"
 )
 
 type Config struct {

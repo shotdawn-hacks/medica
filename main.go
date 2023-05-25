@@ -1,6 +1,6 @@
 package main
 
-import "medview/cmd"
+import "medica/cmd"
 
 func main() {
 	cmd.Execute()

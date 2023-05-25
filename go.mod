@@ -1,4 +1,4 @@
-module medview
+module medica
 
 go 1.20
 

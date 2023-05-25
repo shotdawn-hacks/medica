@@ -6,8 +6,8 @@ services:
       - 3000:3000
     user: '104'
   frontend:
-    container_name: react_medview
-    image: react_medview:1.0.0
+    container_name: react_medica
+    image: react_medica:1.0.0
     build:
       context: frontend
       dockerfile: Dockerfile
@@ -23,4 +23,12 @@ services:
         context: .
     ports:
     - '9000:9000'
+  analyzer:
+    container_name: analyzer
+    image: analyzer:1.0.0
+    build:
+        dockerfile: Dockerfile
+        context: ./microservices/analyzer
+    ports:
+    - '9020:9020'
     

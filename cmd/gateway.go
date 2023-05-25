@@ -4,8 +4,8 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"medview/microservices/api-gateway/processor"
-	"medview/sdk/destination"
+	"medica/microservices/api-gateway/processor"
+	"medica/sdk/destination"
 
 	"github.com/spf13/cobra"
 )
