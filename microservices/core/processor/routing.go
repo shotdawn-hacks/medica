@@ -13,6 +13,7 @@ func (r *Core) newAPI() *gin.Engine {
 	//
 	// PRIVATE
 	//
+	router.POST("/upload", private.Upload)
 
 	router.GET(HTTPHealth, private.Health)
 	router.GET("/ping", private.Ping)

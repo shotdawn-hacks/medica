@@ -1,5 +1,7 @@
 package destination
 
+import "github.com/google/uuid"
+
 type Config struct {
 	ID      string `json:"_id" bson:"_id"`
 	Name    string `json:"name" bson:"name"`
@@ -17,5 +19,12 @@ func NewConfig(t, address, port string) *Config {
 }
 
 func newCoreConfig(address, port string) *Config {
-	return &Config{Address: address, Port: port}
+	c := Config{
+		ID:      uuid.NewString(),
+		Name:    "core",
+		Address: address,
+		Port:    port,
+	}
+
+	return &c
 }

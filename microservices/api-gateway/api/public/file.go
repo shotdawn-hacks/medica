@@ -23,7 +23,7 @@ func Upload(ctx *gin.Context) {
 	if !ok {
 		ctx.AbortWithError(http.StatusInternalServerError, fmt.Errorf("no core destination"))
 	}
-	core := coreDst.(destination.Destination)
+	core := coreDst.(*destination.Destination)
 
 	// New multipart writer.
 	body := &bytes.Buffer{}
@@ -52,7 +52,7 @@ func Upload(ctx *gin.Context) {
 
 	writer.Close()
 
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s:%s", core.Config.Address, core.Config.Port), bytes.NewReader(body.Bytes()))
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s:%s/upload", core.Config.Address, core.Config.Port), bytes.NewReader(body.Bytes()))
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 
 	resp, err := core.Base.Post(req)
