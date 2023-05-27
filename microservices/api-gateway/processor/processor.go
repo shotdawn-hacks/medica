@@ -1,6 +1,7 @@
 package processor
 
 import (
+	"fmt"
 	"medica/microservices/api-gateway/api/private"
 	"medica/microservices/api-gateway/api/public"
 	"medica/sdk/destination"
@@ -47,7 +48,7 @@ func (r *Gateway) SetDestiantion(name string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		for _, dst := range r.Destinations {
 			if dst.Config.Name == name {
-				ctx.Set("dst", dst.Config)
+				ctx.Set(fmt.Sprintf("dst-%s", name), dst)
 				ctx.Next()
 				break
 			}
@@ -69,6 +70,8 @@ func (r *Gateway) newAPI() *gin.Engine {
 	//
 	// PUBLIC
 	//
+
+	publicRouter.Use(r.SetDestiantion("core"))
 
 	publicRouter.GET(HTTPDashboard, public.Dashboard)
 
