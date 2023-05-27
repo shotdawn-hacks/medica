@@ -1,4 +1,4 @@
-package private
+package public
 
 import (
 	"net/http"
@@ -6,6 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Health(ctx *gin.Context) {
+func Upload(ctx *gin.Context) {
 	ctx.Status(http.StatusOK)
 }
