@@ -23,6 +23,16 @@ services:
         context: .
     ports:
     - '9000:9000'
+  core:
+    container_name: core
+    image: core:1.0.0
+    environment:
+       - MONGO=mongodb://
+    build:
+        dockerfile: microservices/core/Dockerfile
+        context: .
+    ports:
+    - '9010:9010'
   analyzer:
     container_name: analyzer
     image: analyzer:1.0.0

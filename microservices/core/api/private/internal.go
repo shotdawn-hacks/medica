@@ -9,3 +9,7 @@ import (
 func Health(ctx *gin.Context) {
 	ctx.Status(http.StatusOK)
 }
+
+func Ping(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, "pong")
+}
