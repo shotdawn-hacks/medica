@@ -8,6 +8,9 @@ import (
 	"medica/sdk/shared"
 	"time"
 
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
 	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -60,8 +63,18 @@ func (r *Gateway) SetDestiantion(name string) gin.HandlerFunc {
 	}
 }
 
+//	@title			Medica
+//	@version		1.0
+//	@description	this is a sersver to help doctors evaluate the services provided
+//	@termsOfService	http://swagger.io/terms/
+//	@license.name	Apache
+//	@license.url	https://github.com/shotdawn-hacks/medica/blob/main/LICENSE
+//
+// @BasePath /api/v1
 func (r *Gateway) newAPI() *gin.Engine {
 	router := gin.New()
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	logger, _ := zap.NewProduction()
 
