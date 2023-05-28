@@ -29,7 +29,7 @@ def register():
 
             mock = json.loads(mock)
             mock["_id"] = str(uuid.uuid4())
-            mock["address"] = os.environ['ANALYZER']
+            mock["address"] = "127.0.0.1"
             x+=1
             resp = requests.post(url="http://"+os.environ['CORE']+":9010/register", json=mock)
 

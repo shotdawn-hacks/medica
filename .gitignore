@@ -4,3 +4,4 @@ medica
 test_files/
 
 .vscode/
+docker-compose-dev.yml

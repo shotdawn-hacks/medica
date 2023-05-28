@@ -1,8 +1,11 @@
 package processor
 
 import (
+	"fmt"
 	"medica/sdk/destination"
 	"sync"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Core struct {
@@ -17,11 +20,24 @@ type Config struct {
 	Plants *destination.Config
 }
 
-func (r *Core) SetDestiantion(cfg *destination.Config) {
+func (r *Core) AppendDestiantion(cfg *destination.Config) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
 	r.Destinations = append(r.Destinations, destination.NewDestination(cfg))
+}
+
+func (r *Core) SetDestiantion(name string) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		for _, dst := range r.Destinations {
+			if dst.Config.Name == name {
+				ctx.Set(fmt.Sprintf("dst-%s", name), dst)
+				ctx.Next()
+				break
+			}
+		}
+
+	}
 }
 
 func NewDefaultCore(cfgs ...destination.Config) *Core {

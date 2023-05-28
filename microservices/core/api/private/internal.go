@@ -32,5 +32,5 @@ func Register(ctx *gin.Context) {
 		ctx.AbortWithError(http.StatusOK, fmt.Errorf("core is wrong interface"))
 	}
 
-	coreSetter.SetDestiantion(&destCfg)
+	coreSetter.AppendDestiantion(&destCfg)
 }

@@ -6,6 +6,7 @@ package cmd
 import (
 	"medica/microservices/core/processor"
 	"medica/sdk/db"
+	"medica/sdk/run"
 
 	"github.com/spf13/cobra"
 )
@@ -18,6 +19,7 @@ var coreCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		postgresURI, _ := cmd.Flags().GetString("postgres")
 		db.SetURI(postgresURI)
+		run.Init()
 
 		coreService := processor.NewDefaultCore()
 

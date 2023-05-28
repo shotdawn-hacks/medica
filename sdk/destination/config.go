@@ -3,7 +3,7 @@ package destination
 import "github.com/google/uuid"
 
 type Setter interface {
-	SetDestiantion(*Config)
+	AppendDestiantion(*Config)
 }
 
 type Config struct {

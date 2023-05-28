@@ -33,8 +33,6 @@ services:
         context: .
     ports:
     - '9000:9000'
-    # networks:
-    #   - production 
   core:
     depends_on: 
     - "postgres"
