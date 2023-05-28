@@ -2,6 +2,7 @@ package private
 
 import (
 	"fmt"
+	"medica/sdk/db"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,22 +25,44 @@ func Upload(ctx *gin.Context) {
 		return
 	}
 
+	var Records []*db.Record
+
 	rows, err := excelFile.Rows("Sheet1")
 	if err != nil {
-		fmt.Println(err)
+		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while reading file: %w", err))
+
 		return
 	}
+
+	first := true
+
 	for rows.Next() {
 		row, err := rows.Columns()
 		if err != nil {
-			fmt.Println(err)
+			ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while reading row: %w", err))
+
+			return
 		}
-		for _, colCell := range row {
-			fmt.Print(colCell, "\t")
+		if !first {
+			Records = append(Records, db.NewRecord(row))
+		} else {
+			first = false
 		}
-		fmt.Println()
+
 	}
+
+	ok, err := db.NewCopy(Records)
+	if err != nil {
+		if !ok {
+			ctx.AbortWithError(http.StatusInternalServerError, fmt.Errorf("while copying data: %w", err))
+
+			return
+		}
+	}
+
 	if err = rows.Close(); err != nil {
-		fmt.Println(err)
+		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while closing file: %w", err))
+
+		return
 	}
 }

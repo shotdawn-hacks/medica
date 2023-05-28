@@ -4,10 +4,13 @@ go 1.20
 
 require (
 	github.com/gin-contrib/cors v1.4.0
+	github.com/gin-contrib/zap v0.1.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/google/uuid v1.3.0
+	github.com/lib/pq v1.10.9
 	github.com/spf13/cobra v1.7.0
 	github.com/xuri/excelize/v2 v2.7.1
+	go.uber.org/zap v1.24.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -35,6 +38,10 @@ require (
 	github.com/ugorji/go/codec v1.2.9 // indirect
 	github.com/xuri/efp v0.0.0-20220603152613-6918739fd470 // indirect
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
+	go.opentelemetry.io/otel v1.10.0 // indirect
+	go.opentelemetry.io/otel/trace v1.10.0 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/crypto v0.8.0 // indirect
 	golang.org/x/net v0.9.0 // indirect

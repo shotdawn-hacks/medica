@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"medica/microservices/core/processor"
+	"medica/sdk/db"
 
 	"github.com/spf13/cobra"
 )
@@ -15,6 +16,9 @@ var coreCmd = &cobra.Command{
 	Short: "Starter for core microservice",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
+		postgresURI, _ := cmd.Flags().GetString("postgres")
+		db.SetURI(postgresURI)
+
 		coreService := processor.NewDefaultCore()
 
 		coreService.Start()
@@ -23,12 +27,6 @@ var coreCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(coreCmd)
-	// Here you will define your flags and configuration settings.
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// gatewayCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	coreCmd.PersistentFlags().String("postgres", "", "PostgreSQL connection string")
 }
