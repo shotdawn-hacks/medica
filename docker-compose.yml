@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "prod_db"
+      POSTGRES_USER: "prod_user"
+      POSTGRES_PASSWORD: "production"
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
   grafana:
     image: grafana/grafana-enterprise:8.2.0
     ports:
@@ -17,12 +27,26 @@ services:
     container_name: api-gateway
     image: api-gateway:1.0.0
     environment:
-       - MONGO=mongodb://
+      CORE: core
     build:
         dockerfile: microservices/api-gateway/Dockerfile
         context: .
     ports:
     - '9000:9000'
+    # networks:
+    #   - production 
+  core:
+    depends_on: 
+    - "postgres"
+    container_name: core
+    image: core:1.0.0
+    environment:
+      POSTGRES: postgresql://prod_user:production@postgres:5432/prod_db?sslmode=disable
+    build:
+        dockerfile: microservices/core/Dockerfile
+        context: .
+    ports:
+    - '9010:9010'
   analyzer:
     container_name: analyzer
     image: analyzer:1.0.0
@@ -32,3 +56,5 @@ services:
     ports:
     - '9020:9020'
     
+volumes:
+  postgres:

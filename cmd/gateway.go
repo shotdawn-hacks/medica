@@ -16,15 +16,11 @@ var gatewayCmd = &cobra.Command{
 	Short: "Starter for api-gateway microservice",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		plantsAddress, _ := cmd.Flags().GetString("core-address")
-		plantsPort, _ := cmd.Flags().GetString("core-port")
-		plantsCfg := destination.NewConfig("core", plantsAddress, plantsPort)
+		coreAddress, _ := cmd.Flags().GetString("core-address")
+		corePort, _ := cmd.Flags().GetString("core-port")
+		coreCfg := destination.NewConfig("core", coreAddress, corePort)
 
-		gatewayCfg := processor.Config{
-			Plants: plantsCfg,
-		}
-
-		gatewayService := processor.NewDefaultGateway(gatewayCfg)
+		gatewayService := processor.NewDefaultGateway(*coreCfg)
 
 		gatewayService.Start()
 	},

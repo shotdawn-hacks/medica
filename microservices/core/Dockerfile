@@ -20,6 +20,8 @@ WORKDIR /app
 
 COPY --from=builder /app/medica /app/medica
 
-CMD ./medica api-gateway --core-address=$CORE --core-port=9010
+CMD ./medica core --postgres=$POSTGRES
 
-EXPOSE 9000
+EXPOSE 9010
+
+
