@@ -89,6 +89,7 @@ func (r *Gateway) newAPI() *gin.Engine {
 	// PRIVATE
 	//
 
+	router.GET("/hospitals", private.Hospitals)
 	router.GET(HTTPHealth, private.Health)
 
 	return router
