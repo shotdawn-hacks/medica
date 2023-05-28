@@ -121,11 +121,17 @@ func SendRecordsWaitAndFlush(analyzer *destination.Destination, records []*db.Re
 		run.Logger.Error("", zap.Error(err))
 	}
 
-	fmt.Println(resp.StatusCode)
-
-	var destCfg string
+	var destCfg []ClassifiedPrescription
 
 	json.NewDecoder(resp.Body).Decode(&destCfg)
+}
 
-	fmt.Println(destCfg)
+type ClassifiedPrescription struct {
+	ID                                 string   `json:"_id"`
+	ICD                                string   `json:"icd"`
+	Prescription                       []string `json:"prescription"`
+	CorrectPrescription                []string `json:"correct_prescription"`
+	PossibleCorrectPrescription        []string `json:"possible_correct_prescription"`
+	WrongPrescription                  []string `json:"wrong_prescription"`
+	CorrectButNotAccountedPrescription []string `json:"correct_but_not_accounted_prescription"`
 }

@@ -19,7 +19,6 @@ class DataProcessor:
         data = json_file
         self.data_loaded = pd.DataFrame(data)
         self.data_loaded.columns = ['_id', 'icd', 'prescription']
-        print(self.data_loaded)
     
     def process_data(self):
         self.data_loaded['prescription'] = self.data_loaded['prescription'].apply(lambda x: x.strip().split('\n'))
