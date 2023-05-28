@@ -1,0 +1,23 @@
+info:
+  contact: {}
+  description: this is a sersver to help doctors evaluate the services provided
+  license:
+    name: Apache
+    url: https://github.com/shotdawn-hacks/medica/blob/main/LICENSE
+  termsOfService: http://swagger.io/terms/
+  title: Medica
+  version: "1.0"
+paths:
+  /upload:
+    post:
+      consumes:
+      - multipart/form-data
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: loads data from user
+swagger: "2.0"

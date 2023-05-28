@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	_ "medica/docs"
 	"medica/sdk/destination"
 	"mime/multipart"
 	"net/http"
@@ -11,6 +12,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Upload godoc
+// @Summary	loads data from user
+// @Accept		multipart/form-data
+// @Success	200
+// @Failure 400
+// @Failure 500
+// @Router /upload [post]
 func Upload(ctx *gin.Context) {
 	file, err := ctx.FormFile("file")
 	if err != nil {
