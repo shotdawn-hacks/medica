@@ -1,11 +1,14 @@
 from fastapi import Request, FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+
 import uvicorn
-from DataProcessor import DataProcessor
+from dataprocessor import DataProcessor
 import json
 
 app = FastAPI()
 
-processor = DataProcessor("./files/data_standart_sppvr.csv","./files/data_standart_sppvr.csv")
+processor = DataProcessor("./files/data_standart.csv","./files/data_standart_sppvr.csv")
 
 @app.get("/")
 async def root():
@@ -16,8 +19,8 @@ async def classify(request: Request):
     req_body = await request.json()
     processor.load_data(req_body)
     processor.process_data()
-    
-    return processor.get_result()
+
+    return JSONResponse(content=json.loads(processor.get_result()))
 
 
 if __name__ == "__main__":
