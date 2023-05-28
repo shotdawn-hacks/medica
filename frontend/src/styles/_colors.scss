@@ -1,6 +1,12 @@
 :root {
   --text-color: black;
-  --support-background-color: grey;
+  --support-background-color: silver;
   --main-background-color: white;
   --signature-color: #A59ECD;
+  @media (min-width: 0px) {
+    --multiplier: 0.66;
+  }
+  @media (min-width: 1600px) {
+    --multiplier: 1;
+  }
 }

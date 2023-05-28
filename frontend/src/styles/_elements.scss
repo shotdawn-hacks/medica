@@ -1,11 +1,11 @@
 .icon {
-  height: 30px;
-  width: 30px;
+  height: calc(30px * var(--multiplier));
+  width: calc(30px * var(--multiplier));
 }
 
 .icon-auto {
   width: auto;
-  height: 46px;
+  height: calc(46px * var(--multiplier));
 }
 
 .centering {
@@ -18,6 +18,8 @@
 
 .medica {
   content: '';
+  height: calc(80px * var(--multiplier));
+  margin-bottom: calc(30px * var(--multiplier));
 
   &:before {
     color: black;
@@ -26,7 +28,7 @@
 }
 
 .logo {
-  font-size: 3em;
+  font-size: calc(3em * var(--multiplier));
   justify-self: center;
   align-self: center;
 }

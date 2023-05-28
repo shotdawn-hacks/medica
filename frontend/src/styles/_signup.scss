@@ -8,8 +8,8 @@
 
 .login {
   &-container {
-    height: 500px;
-    width: 500px;
+    height: calc(500px * var(--multiplier));
+    width: calc(500px * var(--multiplier));
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
@@ -20,30 +20,30 @@
     display: grid;
     justify-content: center;
     align-content: center;
-    height: 100px;
+    height: calc(100px * var(--multiplier));
     background-color: var(--signature-color);
-    border-radius: 40px 40px 0px 0px;
+    border-radius: calc(40px * var(--multiplier)) calc(40px * var(--multiplier)) 0px 0px;
   }
 
   &-form {
     display: grid;
     justify-content: center;
     align-content: center;
-    height: 400px;
+    height: calc(400px * var(--multiplier));
 
     &-fields {
       display: grid;
-      gap: 30px;
-      grid-template-rows: 70px 70px 10px 70px;
-      width: 400px;
+      gap: calc(30px * var(--multiplier));
+      grid-template-rows: calc(70px * var(--multiplier)) calc(70px * var(--multiplier)) calc(10px * var(--multiplier)) calc(70px * var(--multiplier));
+      width: calc(400px * var(--multiplier));
     }
 
     &-field {
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
       border-radius: 360px;
       outline: none;
-      padding-inline: 30px;
-      font-size: 1.7em;
+      padding-inline: calc(30px * var(--multiplier));
+      font-size: calc(1.7em * var(--multiplier));
       &.name {
       }
       &.password {

@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
+import Reports from './pages/Reports';
 import NotFound from './pages/404';
 import Login from './pages/Login';
 
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<PrivateRoutes loggedIn={loggedIn} />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/reports/*" element={<Reports />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/login" element={<Login />} />

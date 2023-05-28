@@ -23,14 +23,14 @@ export default function Sidebar(props) {
           path="../assets/home.png"
           title="Дашборд"
           status="raw"
-          to="/dashboard"
+          to="/"
           raw="true"
         />
         <NavigationSection
           path="../assets/report.png"
           title="Отчeты"
           status="soon"
-          to="/skill-trees"
+          to="/reports"
         />
         <NavigationSection
           path="../assets/staff.png"
