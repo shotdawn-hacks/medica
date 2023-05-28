@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY --from=builder /app/medica /app/medica
 
-CMD ["./medica", "core"]
+CMD ./medica core --postgres=$POSTGRES
 
 EXPOSE 9010
 

@@ -6,8 +6,11 @@ import (
 	"medica/microservices/api-gateway/api/public"
 	"medica/sdk/destination"
 	"medica/sdk/shared"
+	"time"
 
+	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type Gateway struct {
@@ -59,6 +62,11 @@ func (r *Gateway) SetDestiantion(name string) gin.HandlerFunc {
 
 func (r *Gateway) newAPI() *gin.Engine {
 	router := gin.New()
+
+	logger, _ := zap.NewProduction()
+
+	router.Use(ginzap.Ginzap(logger, time.RFC3339, true))
+
 	publicRouter := router.Group("/api/v1")
 
 	//

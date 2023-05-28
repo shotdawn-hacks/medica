@@ -20,8 +20,6 @@ WORKDIR /app
 
 COPY --from=builder /app/medica /app/medica
 
-CMD ["./medica", "api-gateway"]
+CMD ./medica api-gateway --core-address=$CORE --core-port=9010
 
 EXPOSE 9000
-
-
