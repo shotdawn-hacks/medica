@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 
 export default function Login() {
-  useTitle('Login | Neohabit');
+  useTitle('Login');
 
   return (
     <div id="content-signup">

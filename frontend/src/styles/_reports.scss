@@ -1,0 +1,100 @@
+.report-change {
+  margin: 50px;
+  height: 80px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  &-container {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+    align-content: center;
+    border-radius: 360px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.report-section {
+  background-color: #A59ECD;
+  padding: 30px;
+  padding-inline: 80px;
+  font-size: 28px;
+
+  &.left {
+    border-radius: 360px 0 0 360px;
+  }
+
+  &.right {
+    border-radius: 0 360px 360px 0;
+  }
+
+  &.active {
+    background-color: white;
+  }
+}
+
+.reports {
+  background-color: silver;
+}
+
+.thing {
+  display: grid;
+  padding-inline: 50px;
+  padding-top: 10px;
+}
+
+.to {
+  display: grid;
+  align-content: center;
+  grid-auto-columns: max-content;
+  gap: 30px;
+  width: 100%;
+}
+
+.consider {
+  height: 80px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 360px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.4em;
+  background-color: white;
+  overflow: hidden;
+
+  &.date {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+input {
+  text-align: center;
+  display: inline;
+  height: 80px;
+}
+
+.dateStart {
+  border-right: 1px solid silver;
+  padding-left: 20px;
+}
+
+.dateEnd {
+  padding-right: 20px;
+  border-left: 1px solid silver;
+}
+
+input[type="date"]{
+    background-color: silver;
+    color: #ffffff;
+    font-size: 1.2em;
+    border: none;
+    outline: none;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: silver;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}

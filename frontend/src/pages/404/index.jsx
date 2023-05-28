@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 
 export default function NotFound() {
-  useTitle('404 | Neohabit');
+  useTitle('404');
   const navigate = useNavigate();
 
   return (

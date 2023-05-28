@@ -10,7 +10,7 @@ import {
 import useTitle from '../../hooks/useTitle';
 
 export default function Dashboard() {
-  useTitle('Dashboard | Neohabit');
+  useTitle('Dashboard');
 
   return (
     <div className="dashboard">
