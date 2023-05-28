@@ -47,7 +47,8 @@
 .to {
   display: grid;
   align-content: center;
-  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-template-columns: calc(500px * var(--multiplier));
   gap: calc(30px * var(--multiplier));
   width: 100%;
 }
@@ -66,6 +67,16 @@
   &.date {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  &.generate {
+    background-color: #A59ECD;
+    outline: none;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -88,7 +99,7 @@ input {
 input[type="date"]{
     background-color: silver;
     color: #ffffff;
-    font-size: calc(1.2em * var(--multiplier));
+    font-size: calc(1.4em * var(--multiplier));
     border: none;
     outline: none;
 }
@@ -97,4 +108,7 @@ input[type="date"]{
     padding: calc(5px * var(--multiplier));
     cursor: pointer;
     border-radius: 3px;
+}
+
+.sancheck {
 }

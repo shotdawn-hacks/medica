@@ -26,6 +26,11 @@ export default function ReportNew() {
           <input
           />
         </div>
+        <button className="consider generate">
+          Импорт
+        </button>
+      </div>
+      <div className="sancheck">
       </div>
     </div>
   );
