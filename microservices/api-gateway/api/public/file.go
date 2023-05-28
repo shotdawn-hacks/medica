@@ -22,6 +22,8 @@ func Upload(ctx *gin.Context) {
 	coreDst, ok := ctx.Get("dst-core")
 	if !ok {
 		ctx.AbortWithError(http.StatusInternalServerError, fmt.Errorf("no core destination"))
+
+		return
 	}
 	core := coreDst.(*destination.Destination)
 
@@ -38,14 +40,14 @@ func Upload(ctx *gin.Context) {
 
 	fileToUpload, err := file.Open()
 	if err != nil {
-		ctx.AbortWithError(http.StatusBadRequest, err)
+		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while opening file: %w", err))
 
 		return
 	}
 
 	_, err = io.Copy(fw, fileToUpload)
 	if err != nil {
-		ctx.AbortWithError(http.StatusBadRequest, err)
+		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while copying %w", err))
 
 		return
 	}
@@ -57,7 +59,7 @@ func Upload(ctx *gin.Context) {
 
 	resp, err := core.Base.Post(req)
 	if err != nil {
-		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while creating fileform: %w", err))
+		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while posting: %w", err))
 
 		return
 	}
