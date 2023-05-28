@@ -22,6 +22,7 @@ func (r *Core) newAPI() *gin.Engine {
 
 	router.POST("/upload", private.Upload)
 
+	router.POST("/register", SetCore(r), private.Register)
 	router.GET(HTTPHealth, private.Health)
 	router.GET("/ping", private.Ping)
 

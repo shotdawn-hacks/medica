@@ -53,6 +53,9 @@ services:
     build:
         dockerfile: Dockerfile
         context: ./microservices/analyzer
+    environment:
+      CORE: core
+      ANALYZER: analyzer
     ports:
     - '9020:9020'
     

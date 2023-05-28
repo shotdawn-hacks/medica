@@ -2,6 +2,7 @@ package processor
 
 import (
 	"medica/sdk/destination"
+	"sync"
 )
 
 type Core struct {
@@ -9,10 +10,18 @@ type Core struct {
 	Address      string                     `json:"address" bson:"address"`
 	Port         string                     `json:"port" bson:"port"`
 	Destinations []*destination.Destination `json:"destinations" bson:"destinations"`
+	mu           sync.RWMutex
 }
 
 type Config struct {
 	Plants *destination.Config
+}
+
+func (r *Core) SetDestiantion(cfg *destination.Config) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+
+	r.Destinations = append(r.Destinations, destination.NewDestination(cfg))
 }
 
 func NewDefaultCore(cfgs ...destination.Config) *Core {

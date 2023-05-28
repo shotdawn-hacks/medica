@@ -2,10 +2,14 @@ package destination
 
 import "github.com/google/uuid"
 
+type Setter interface {
+	SetDestiantion(*Config)
+}
+
 type Config struct {
 	ID      string `json:"_id" bson:"_id"`
 	Name    string `json:"name" bson:"name"`
-	Address string `json:"hostname" bson:"hostname"`
+	Address string `json:"address" bson:"address"`
 	Port    string `json:"port" bson:"port"`
 }
 
