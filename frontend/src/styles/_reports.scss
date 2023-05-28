@@ -1,6 +1,6 @@
 .report-change {
-  margin: 50px;
-  height: 80px;
+  margin: calc(50px * var(--multiplier));
+  height: calc(80px * var(--multiplier));
   display: grid;
   justify-content: center;
   align-content: center;
@@ -17,9 +17,9 @@
 
 .report-section {
   background-color: #A59ECD;
-  padding: 30px;
-  padding-inline: 80px;
-  font-size: 28px;
+  padding: calc(30px * var(--multiplier));
+  padding-inline: calc(80px * var(--multiplier));
+  font-size: calc(28px * var(--multiplier));
 
   &.left {
     border-radius: 360px 0 0 360px;
@@ -40,26 +40,26 @@
 
 .thing {
   display: grid;
-  padding-inline: 50px;
-  padding-top: 10px;
+  padding-inline: calc(50px * var(--multiplier));
+  padding-top: calc(10px * var(--multiplier));
 }
 
 .to {
   display: grid;
   align-content: center;
   grid-auto-columns: max-content;
-  gap: 30px;
+  gap: calc(30px * var(--multiplier));
   width: 100%;
 }
 
 .consider {
-  height: 80px;
+  height: calc(80px * var(--multiplier));
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   border-radius: 360px;
   display: grid;
   justify-content: center;
   align-content: center;
-  font-size: 1.4em;
+  font-size: calc(1.4em * var(--multiplier));
   background-color: white;
   overflow: hidden;
 
@@ -72,29 +72,29 @@
 input {
   text-align: center;
   display: inline;
-  height: 80px;
+  height: calc(80px * var(--multiplier));
 }
 
 .dateStart {
   border-right: 1px solid silver;
-  padding-left: 20px;
+  padding-left: calc(20px * var(--multiplier));
 }
 
 .dateEnd {
-  padding-right: 20px;
+  padding-right: calc(20px * var(--multiplier));
   border-left: 1px solid silver;
 }
 
 input[type="date"]{
     background-color: silver;
     color: #ffffff;
-    font-size: 1.2em;
+    font-size: calc(1.2em * var(--multiplier));
     border: none;
     outline: none;
 }
 ::-webkit-calendar-picker-indicator{
     background-color: silver;
-    padding: 5px;
+    padding: calc(5px * var(--multiplier));
     cursor: pointer;
     border-radius: 3px;
 }

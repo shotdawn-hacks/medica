@@ -4,36 +4,36 @@
   background-color: var(--main-background-color);
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 50px 30px 0px 30px;
+  gap: calc(30px * var(--multiplier));
+  padding: calc(50px * var(--multiplier)) calc(30px * var(--multiplier)) 0px calc(30px * var(--multiplier));
   // transition: 1.5s;
   white-space: nowrap;
   overflow: scroll;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 
   & p {
-    line-height: 20px;
+    line-height: calc(20px * var(--multiplier));
   }
 }
 
 
 .navigation {
   display: grid;
-  grid-auto-rows: 80px;
-  gap: 15px;
+  grid-auto-rows: calc(80px * var(--multiplier));
+  gap: calc(15px * var(--multiplier));
 
   &-section {
-    font-size: 1.5em;
+    font-size: calc(1.5em * var(--multiplier));
     height: 100%;
     display: grid;
-    gap: 15px;
-    grid-template-columns: 50px 60px;
+    gap: calc(15px * var(--multiplier));
+    grid-template-columns: calc(50px * var(--multiplier)) calc(60px * var(--multiplier));
     align-items: center;
     justify-content: left;
     position: relative;
     overflow: hidden;
     border-radius: 360px;
-    padding-inline: 35px;
+    padding-inline: calc(35px * var(--multiplier));
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     outline: none;
 
@@ -45,7 +45,7 @@
 
   &-section-collapsed {
     display: grid;
-    grid-template-rows: 25px 10px;
+    grid-template-rows: calc(25px * var(--multiplier)) calc(10px * var(--multiplier));
   }
 
   & .ribbon {
