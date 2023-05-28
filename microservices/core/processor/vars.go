@@ -9,6 +9,12 @@ const (
 	HTTPDashboard = "/search"
 
 	//
+	// Report private api
+	//
+
+	HTTPUpload = "/upload"
+
+	//
 	// User private api
 	//
 
@@ -18,5 +24,6 @@ const (
 	// Core private api
 	//
 
-	HTTPHealth = "/health"
+	HTTPRegister = "/register"
+	HTTPHealth   = "/health"
 )

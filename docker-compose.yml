@@ -33,8 +33,6 @@ services:
         context: .
     ports:
     - '9000:9000'
-    # networks:
-    #   - production 
   core:
     depends_on: 
     - "postgres"
@@ -53,6 +51,9 @@ services:
     build:
         dockerfile: Dockerfile
         context: ./microservices/analyzer
+    environment:
+      CORE: core
+      ANALYZER: analyzer
     ports:
     - '9020:9020'
     

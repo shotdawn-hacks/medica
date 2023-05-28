@@ -1,12 +1,17 @@
 package private
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"medica/sdk/db"
+	"medica/sdk/destination"
+	"medica/sdk/run"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/xuri/excelize/v2"
+	"go.uber.org/zap"
 )
 
 func Upload(ctx *gin.Context) {
@@ -60,9 +65,67 @@ func Upload(ctx *gin.Context) {
 		}
 	}
 
+	analyzerDst, ok := ctx.Get("dst-analyzer")
+	if !ok {
+		ctx.AbortWithError(http.StatusInternalServerError, fmt.Errorf("no core destination"))
+
+		return
+	}
+
+	analyzer := analyzerDst.(*destination.Destination)
+
+	go SendRecordsWaitAndFlush(analyzer, Records)
+
 	if err = rows.Close(); err != nil {
 		ctx.AbortWithError(http.StatusBadRequest, fmt.Errorf("while closing file: %w", err))
 
 		return
 	}
+}
+
+type AnalyzerRecord struct {
+	ID           string `json:"_id"`
+	ICD          string `json:"icd"`
+	Prescription string `json:"prescription"`
+}
+
+func RecordsToAnalyzerRecords(rec []*db.Record) []*AnalyzerRecord {
+	var AnalyzerRecords []*AnalyzerRecord
+
+	for _, r := range rec {
+		AnalyzerRecords = append(AnalyzerRecords,
+			&AnalyzerRecord{
+				ID:           r.ID,
+				ICD:          r.ICD,
+				Prescription: r.Prescription})
+	}
+
+	return AnalyzerRecords
+}
+
+func SendRecordsWaitAndFlush(analyzer *destination.Destination, records []*db.Record) {
+	jsonBody, err := json.Marshal(RecordsToAnalyzerRecords(records))
+	if err != nil {
+		run.Logger.Error("while encoding records_to_analyzer_records:", zap.Error(err))
+	}
+
+	analyzerURL := fmt.Sprintf("http://%s:%s/classify", analyzer.Config.Address, analyzer.Config.Port)
+	fmt.Println(analyzerURL)
+	req, err := http.NewRequest("POST", analyzerURL, bytes.NewBuffer(jsonBody))
+	req.Header.Set("Content-Type", "application/json")
+
+	cli := http.Client{}
+
+	resp, err := cli.Do(req)
+	if err != nil {
+		run.Logger.Error("", zap.Error(err))
+	}
+
+	fmt.Println(resp.StatusCode)
+
+	var destCfg string
+
+	json.NewDecoder(resp.Body).Decode(&destCfg)
+
+	fmt.Println(destCfg)
 }

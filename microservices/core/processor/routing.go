@@ -2,6 +2,7 @@ package processor
 
 import (
 	"medica/microservices/core/api/private"
+	"medica/sdk/destination"
 	"time"
 
 	ginzap "github.com/gin-contrib/zap"
@@ -20,8 +21,9 @@ func (r *Core) newAPI() *gin.Engine {
 	// PRIVATE
 	//
 
-	router.POST("/upload", private.Upload)
+	router.POST(HTTPUpload, r.SetDestiantion(destination.DestinationAnalyzer), private.Upload)
 
+	router.POST(HTTPRegister, SetCore(r), private.Register)
 	router.GET(HTTPHealth, private.Health)
 	router.GET("/ping", private.Ping)
 
